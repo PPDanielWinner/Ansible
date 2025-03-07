@@ -2,6 +2,7 @@
 - name: Python auf dem Raspberry Pi aktualisieren
   hosts: all
   gather_facts: yes
+  become: true
   tasks:
     - name: Prüfe, ob Python3 installiert ist
       ansible.builtin.command:
