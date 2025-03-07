@@ -1,6 +1,6 @@
 ---
 - name: Python auf dem Raspberry Pi aktualisieren
-  hosts: raspberrypi
+  hosts: all
   gather_facts: yes
   tasks:
     - name: Prüfe, ob Python3 installiert ist
