@@ -5,5 +5,4 @@
   tasks:
     - name: Ping Raspberry Pi
       apt:
-        upgrade: yes
-        update_cache: yes
+        update: yes
