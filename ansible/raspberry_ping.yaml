@@ -1,8 +1,12 @@
 ---
-- hosts: all
-
-  become: true
+- name: Raspberry Pi Speicherstatus abfragen
+  hosts: all
+  gather_facts: no
   tasks:
-    - name: Ping Raspberry Pi
-      apt:
-        update: yes
+    - name: Überprüfe freien Speicher
+      command: df -h
+      register: disk_usage
+
+    - name: Zeige freien Speicher
+      debug:
+        msg: "{{ disk_usage.stdout }}"
