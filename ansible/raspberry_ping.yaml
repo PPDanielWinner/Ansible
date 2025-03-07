@@ -1,4 +1,9 @@
 ---
 - hosts: all
+
+  become: true
   tasks:
-      ping: 
+    - name: Ping Raspberry Pi
+      apt:
+        upgrade: yes
+        update_cache: yes
