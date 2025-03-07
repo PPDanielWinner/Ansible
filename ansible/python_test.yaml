@@ -1,0 +1,31 @@
+---
+- name: Python auf dem Raspberry Pi aktualisieren
+  hosts: raspberrypi
+  gather_facts: yes
+  tasks:
+    - name: Prüfe, ob Python3 installiert ist
+      ansible.builtin.command:
+        cmd: python3 --version
+      register: python_version
+      ignore_errors: yes
+
+    - name: Installiere die neueste Version von Python 3
+      ansible.builtin.apt:
+        name: python3
+        state: latest
+      when: python_version.failed
+
+    - name: Stelle sicher, dass Python3 aktualisiert ist
+      ansible.builtin.apt:
+        name: python3
+        state: latest
+      when: not python_version.failed
+
+    - name: Überprüfe, ob die neueste Python-Version installiert ist
+      ansible.builtin.command:
+        cmd: python3 --version
+      register: new_python_version
+
+    - name: Zeige die aktuelle Python-Version
+      debug:
+        msg: "Aktuelle Python-Version: {{ new_python_version.stdout }}"
