@@ -1,5 +1,6 @@
 ---
-- hosts: allsgxbsd
+- hosts: all
   become: true
+  gather_facts: false
   tasks:
-      ping: true
+      ping: 
