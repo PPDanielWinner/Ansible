@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: allsgxbsd
   become: true
   tasks:
       ping: true
