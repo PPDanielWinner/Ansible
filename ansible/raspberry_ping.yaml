@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Überprüfe freien Speicher
-      command: df -h
+      shell: df -h
       register: disk_usage
 
     - name: Zeige freien Speicher
