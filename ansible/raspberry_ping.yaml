@@ -4,9 +4,9 @@
   gather_facts: no
   tasks:
     - name: Überprüfe freien Speicher
-      shell: df -h
-      register: disk_usage
+      shell: df -h | grep '/$' | awk '{print $4}'
+      register: free_space
 
     - name: Zeige freien Speicher
       debug:
-        msg: "{{ disk_usage.stdout }}"
+        msg: "Freier Speicher: {{ free_space.stdout }}"
